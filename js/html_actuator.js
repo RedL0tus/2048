@@ -3,6 +3,7 @@ function HTMLActuator() {
   this.scoreContainer   = document.querySelector(".score-container");
   this.bestContainer    = document.querySelector(".best-container");
   this.messageContainer = document.querySelector(".game-message");
+  this.sharingContainer = document.querySelector(".score-sharing");
 
   this.score = 0;
 }
@@ -47,7 +48,23 @@ HTMLActuator.prototype.clearContainer = function (container) {
 };
 
 HTMLActuator.prototype.addTile = function (tile) {
+  var text = new Array();
+  text[1] = "先續為敬"
+  text[2] = "聼風是雨"
+  text[3] = "提高水平"
+  text[4] = "談笑風生"
+  text[5] = "見得多了"
+  text[6] = "身經百戰"
+  text[7] = "成爲長者"
+  text[8] = "傳授經驗"
+  text[9] = "除了偏差"
+  text[10] = "你要負責"
+  text[11] = "跑得很快"
+  text[12] = "谈笑风生"
+  text[13] = "懂不懂得"
+  text[14] = "永生不死"
   var self = this;
+  var text2 = function (n) { var r = 0; while (n > 1) r++, n >>= 1; return r; }
 
   var wrapper   = document.createElement("div");
   var inner     = document.createElement("div");
@@ -56,13 +73,12 @@ HTMLActuator.prototype.addTile = function (tile) {
 
   // We can't use classlist because it somehow glitches when replacing classes
   var classes = ["tile", "tile-" + tile.value, positionClass];
-
   if (tile.value > 2048) classes.push("tile-super");
 
   this.applyClasses(wrapper, classes);
 
   inner.classList.add("tile-inner");
-  inner.textContent = tile.value;
+  inner.textContent = text[text2(tile.value)];
 
   if (tile.previousPosition) {
     // Make sure that the tile gets rendered in the previous position first
@@ -114,7 +130,7 @@ HTMLActuator.prototype.updateScore = function (score) {
   if (difference > 0) {
     var addition = document.createElement("div");
     addition.classList.add("score-addition");
-    addition.textContent = "+" + difference;
+    addition.textContent = "+" + difference + "s";
 
     this.scoreContainer.appendChild(addition);
   }
@@ -126,14 +142,30 @@ HTMLActuator.prototype.updateBestScore = function (bestScore) {
 
 HTMLActuator.prototype.message = function (won) {
   var type    = won ? "game-won" : "game-over";
-  var message = won ? "You win!" : "Game over!";
+  var message = won ? "為續命事業做了點微小的貢獻" : "續命失敗";
 
   this.messageContainer.classList.add(type);
   this.messageContainer.getElementsByTagName("p")[0].textContent = message;
+
+  this.clearContainer(this.sharingContainer);
+  this.sharingContainer.appendChild(this.scoreShareButton());
 };
 
 HTMLActuator.prototype.clearMessage = function () {
   // IE only takes one value to remove at a time.
   this.messageContainer.classList.remove("game-won");
   this.messageContainer.classList.remove("game-over");
+};
+
+HTMLActuator.prototype.scoreShareButton = function () {
+  var sharescore = document.createElement("a");
+  sharescore.classList.add("tg-share-score");
+  sharescore.setAttribute("href","#");
+
+  tg = "TelegramGameProxy.shareScore(" + this.score + ")"
+
+  sharescore.setAttribute("onclick", tg);
+  sharescore.textContent = "搞個大新聞";
+
+  return sharescore;
 };

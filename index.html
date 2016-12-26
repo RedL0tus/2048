@@ -19,7 +19,7 @@
 <body>
   <div class="container">
     <div class="heading">
-      <h1 class="title">2048</h1>
+      <h1 class="title">虫合</h1>
       <div class="scores-container">
         <div class="score-container">0</div>
         <div class="best-container">0</div>
@@ -27,16 +27,17 @@
     </div>
 
     <div class="above-game">
-      <p class="game-intro">Join the numbers and get to the <strong>2048 tile!</strong></p>
-      <a class="restart-button">New Game</a>
+      <p class="game-intro"> 為蛤蛤續命，提高姿勢水平</p>
+      <a class="restart-button">重新續命</a>
     </div>
 
     <div class="game-container">
       <div class="game-message">
         <p></p>
         <div class="lower">
-	        <a class="keep-playing-button">Keep going</a>
-          <a class="retry-button">Try again</a>
+	        <a class="keep-playing-button">繼續續！</a>
+          <a class="retry-button">重新續命</a>
+          <div class="score-sharing"></div>
         </div>
       </div>
 
@@ -73,15 +74,11 @@
     </div>
 
     <p class="game-explanation">
-      <strong class="important">How to play:</strong> Use your <strong>arrow keys</strong> to move the tiles. When two tiles with the same number touch, they <strong>merge into one!</strong>
+      <strong class="important">如何續命:</strong> 用你的 <strong>方向鍵</strong> 來移動這些方塊. 儅一樣數量的時間方塊互相接觸時，他們會變成一個，於是 <strong>又能續更多的命了！</strong>
     </p>
     <hr>
     <p>
-    <strong class="important">Note:</strong> This site is the official version of 2048. You can play it on your phone via <a href="http://git.io/2048">http://git.io/2048.</a> All other apps or sites are derivatives or fakes, and should be used with caution.
-    </p>
-    <hr>
-    <p>
-    Created by <a href="http://gabrielecirulli.com" target="_blank">Gabriele Cirulli.</a> Based on <a href="https://itunes.apple.com/us/app/1024!/id823499224" target="_blank">1024 by Veewo Studio</a> and conceptually similar to <a href="http://asherv.com/threes/" target="_blank">Threes by Asher Vollmer.</a>
+    <strong class="important">注意:</strong> 這是一個 https://github.com/gabrielecirulli/2048 的 Fork 版本（原作者為 Gabriele Cirulli，以 MIT 協議開源）。
     </p>
   </div>
 
@@ -95,5 +92,6 @@
   <script src="js/local_storage_manager.js"></script>
   <script src="js/game_manager.js"></script>
   <script src="js/application.js"></script>
+  <script src="https://telegram.org/js/games.js"></script>
 </body>
 </html>
